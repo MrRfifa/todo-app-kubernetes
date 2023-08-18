@@ -6,7 +6,7 @@
     "scripts": {
       "start": "node app/index.js"
     },
-    "author": "MrRfifa",
+    "author": "your-name",
     "license": "MIT",
     "dependencies": {
       "body-parser": "^1.19.1",
