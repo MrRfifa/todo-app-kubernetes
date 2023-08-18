@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: todo-app-container
-          image: mrrfifa/todo-app:2.0
+          image: <<username>>/<<image-name>>:<<image-tag>>
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
