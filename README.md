@@ -127,7 +127,7 @@ The files `/kubernetes/mongo-deployment.yaml` and `/kubernetes/todo-app-deployme
     ```bash
      http://127.0.0.1:<<port>>
     ```
-    o test the API, use applications like "Postman" or "Insomnia." Don't forget to append `/todos` to the URL so it looks like:
+    To test the API, use applications like "Postman" or "Insomnia." Don't forget to append `/todos` to the URL so it looks like:
 
     ```bash
      http://127.0.0.1:<<port>>/todos
