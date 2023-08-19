@@ -1,7 +1,7 @@
-
 # Todo App running in kubernetes cluster
 
 This repository contains a todo app designed to run within a Kubernetes cluster. It includes Dockerfiles for easy containerization.
+
 # Project Files Overview
 
 This repository contains the necessary files and configurations for a Todo app that can run within a Kubernetes cluster. The included files are organized as follows:
