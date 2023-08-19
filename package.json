@@ -1,17 +1,26 @@
 {
-    "name": "todo-app",
-    "version": "1.0.0",
-    "description": "A simple CRUD app with Node.js, Express, and MongoDB",
-    "main": "app/index.js",
-    "scripts": {
-      "start": "node app/index.js"
-    },
-    "author": "your-name",
-    "license": "MIT",
-    "dependencies": {
-      "body-parser": "^1.19.1",
-      "express": "^4.17.1",
-      "mongoose": "^5.13.7"
-    }
+  "name": "todo-app",
+  "version": "1.0.1",
+  "description": "A simple CRUD app with Node.js, Express, and MongoDB",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "node app/index.js",
+    "dev": "nodemon app/index.js",
+    "format": "prettier --write \"app/**/*.js\""
+  },
+  "author": "your-name",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "mongoose": "^5.13.7",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "morgan": "^1.10.0",
+    "prettier": "^3.0.2"
   }
-  
+}
