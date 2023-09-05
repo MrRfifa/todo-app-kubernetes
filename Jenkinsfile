@@ -55,8 +55,6 @@ pipeline {
 
         stage('Provision server') {
             environment {
-                subscription_id = credentials("azure_subscription")
-                tenant_id = credentials("tenant_id")
                 TF_VAR_env_prefix = "test"
             }
             steps {
@@ -76,39 +74,35 @@ pipeline {
         }
 
         stage('Deploy to Azure VM') {
-            steps {
-                script {
-                    echo "Waiting for VM to initialize"
-                    sleep(time: 120, unit: "SECONDS")
-                    // Define Azure VM SSH credentials from Jenkins Credential store
-                    def azureVmCredentials = credentials('server-ssh-key')
-                    echo "VM_PUBLIC_IP: ${VM_PUBLIC_IP}"
-                    if (azureVmCredentials) {
-                        // Azure VM SSH connection details
-                        def azureVmHostname = "${VM_PUBLIC_IP}"
-                        def azureVmPort = 22 // Default SSH port
-                        def azureVmUsername = 'azureuser'
-                        def virtual_machine = "${azureVmUsername}@${azureVmHostname}"
-                        def shellCmd = "bash ./server-cmds.sh ${IMAGE}"
-                        // Define the application deployment commands
-                        def deployCommands = """
-                            scp -o StrictHostKeyChecking=no server-cmds.sh \${virtual_machine}:/home/azureuser
-                            scp -o StrictHostKeyChecking=no docker-compose.yaml \${virtual_machine}:/home/azureuser
-                            scp -o StrictHostKeyChecking=no \${virtual_machine}
-                        """
-                        // Execute SSH commands to deploy the application
-                        sshagent(credentials: [azureVmCredentials]) {
-                            sh """\
-                                ssh -o StrictHostKeyChecking=no -p \${azureVmPort} \${virtual_machine} <<EOF
-                                ${deployCommands}
-                                EOF
-                            """
-                        }
-                    } else {
-                        error("Azure VM SSH credentials not found")
-                    }
+    steps {
+        script {
+            // Define Azure VM SSH credentials from Jenkins Credential store
+            def azureVmCredentials = credentials('server-ssh-key')
+            echo "VM_PUBLIC_IP: ${VM_PUBLIC_IP}"
+            if (azureVmCredentials) {
+                // Azure VM SSH connection details
+                def azureVmHostname = "${VM_PUBLIC_IP}"
+                def azureVmPort = 22 // Default SSH port
+                def azureVmUsername = 'azureuser'
+                def virtual_machine = "${azureVmUsername}@${azureVmHostname}"
+                def shellCmd = "bash ./server-cmds.sh ${IMAGE}"
+                // Define the application deployment commands
+                def deployCommands = """
+                    scp -o StrictHostKeyChecking=no server-cmds.sh docker-compose.yaml \${virtual_machine}:/home/azureuser/
+                    ssh -o StrictHostKeyChecking=no -p \${azureVmPort} \${virtual_machine} '\${shellCmd}'
+                """
+                // Execute SSH commands to deploy the application
+                sshagent(credentials: [azureVmCredentials]) {
+                    sh """
+                        ${deployCommands}
+                    """
                 }
+            } else {
+                error("Azure VM SSH credentials not found")
             }
         }
+    }
+}
+
     }
 }
