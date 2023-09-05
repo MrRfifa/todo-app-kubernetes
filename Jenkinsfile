@@ -38,20 +38,19 @@ pipeline {
             }
         }
 
-        /*
-        // Uncomment this stage if needed
+        
         stage('Set Azure Subscription') {
             steps {
                 withCredentials([string(credentialsId: 'azure_subscription', variable: 'AZURE_SUBSCRIPTION_ID')]) {
                     script {
                         sh "az cloud set --name AzureCloud"
                         sh "az login --identity -u /subscriptions/\${AZURE_SUBSCRIPTION_ID}/resourcegroups/myRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myID"
-                        // sh "az account set --subscription \${AZURE_SUBSCRIPTION_ID}"
+                        sh "az account set --subscription \${AZURE_SUBSCRIPTION_ID}"
                     }
                 }
             }
         }
-        */
+        
 
         stage('Provision server') {
             environment {
