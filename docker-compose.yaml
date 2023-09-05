@@ -1,7 +1,7 @@
 version: "3"
 services:
   todo-app:
-    image: ${IMAGE}
+    image: "${IMAGE}"
     ports:
       - "3000:3000"
     depends_on:
