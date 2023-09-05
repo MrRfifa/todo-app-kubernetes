@@ -144,3 +144,8 @@ The files `/kubernetes/mongo-deployment.yaml` and `/kubernetes/todo-app-deployme
     kubectl delete -f todo-app-deployment.yaml
     kubectl delete -f docker-secret.yaml
     ```
+![blue_ocean-iage](https://github.com/MrRfifa/todo-app-kubernetes/assets/101003527/655191f3-ae2a-475b-a5d4-fe297ca90b43)
+![add_todo_object](https://github.com/MrRfifa/todo-app-kubernetes/assets/101003527/2a4b3f65-4ab9-49ac-9f81-a31eb279f0b4)
+![getting todos](https://github.com/MrRfifa/todo-app-kubernetes/assets/101003527/3d05c27a-fb54-4930-b1ac-58432c610250)
+
+
