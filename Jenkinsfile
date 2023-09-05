@@ -44,7 +44,8 @@ pipeline {
                 withCredentials([string(credentialsId: 'azure_subscription', variable: 'AZURE_SUBSCRIPTION_ID')]) {
                     script {
                         sh "az cloud set --name AzureCloud"
-                        sh "az login --identity -u /subscriptions/\${AZURE_SUBSCRIPTION_ID}/resourcegroups/myRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myID"
+                        // sh "az login -u johndoe@contoso.com -p secret"
+                        sh "az login"
                         sh "az account set --subscription \${AZURE_SUBSCRIPTION_ID}"
                     }
                 }
