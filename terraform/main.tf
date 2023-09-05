@@ -69,15 +69,15 @@ resource "azurerm_network_security_group" "myapp-nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-  # Allow port 8080 traffic (HTTP)
+  # Allow port 3000 traffic (HTTP)
   security_rule {
-    name                       = "allow-8080"
+    name                       = "allow-3000"
     priority                   = 1002 # Choose an appropriate priority
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "8080"
+    destination_port_range     = "3000"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
