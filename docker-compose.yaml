@@ -1,20 +1,18 @@
-version: '3'
+version: "3"
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  todo-app:
+    image: ${IMAGE}
     ports:
-      - '3000:3000'
+      - "3000:3000"
     depends_on:
       - mongo
     environment:
       MONGO_HOST: mongo
-      MONGO_PORT: '27017'
+      MONGO_PORT: "27017"
   mongo:
     image: mongo
     ports:
-      - '27017:27017'
+      - "27017:27017"
     volumes:
       - mongo-data:/data/db
 volumes:
