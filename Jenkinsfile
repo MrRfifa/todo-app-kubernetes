@@ -80,6 +80,7 @@ pipeline {
             def azureVmCredentials = credentials('server-ssh-key')
             echo "VM_PUBLIC_IP: ${VM_PUBLIC_IP}"
             if (azureVmCredentials) {
+                echo "Azure VM SSH credentials found"
                 // Azure VM SSH connection details
                 def azureVmHostname = "${VM_PUBLIC_IP}"
                 def azureVmPort = 22 // Default SSH port
@@ -88,11 +89,11 @@ pipeline {
                 def shellCmd = "bash ./server-cmds.sh ${IMAGE}"
                 // Define the application deployment commands
                 def deployCommands = """
-                    scp -o StrictHostKeyChecking=no server-cmds.sh docker-compose.yaml \${virtual_machine}:/home/azureuser/
-                    ssh -o StrictHostKeyChecking=no -p \${azureVmPort} \${virtual_machine} '\${shellCmd}'
+                    scp -o StrictHostKeyChecking=no server-cmds.sh docker-compose.yaml ${virtual_machine}:/home/azureuser/
+                    ssh -o StrictHostKeyChecking=no -p 22 ${azureVmUsername}@${azureVmHostname} ${shellCmd}
                 """
                 // Execute SSH commands to deploy the application
-                sshagent(credentials: [azureVmCredentials]) {
+                sshagent( ['server-ssh-key']) {
                     sh """
                         ${deployCommands}
                     """
