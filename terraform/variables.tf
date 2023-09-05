@@ -21,6 +21,6 @@ variable "vm_credentials" {
   })
   default = {
     username          = "azureuser"
-    ssh_file_location = "/home/azureuser/.ssh/my_ssh_key.pub"
+    ssh_file_location = "/root/.ssh/my_ssh_key.pub"
   }
 }

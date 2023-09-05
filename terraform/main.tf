@@ -1,7 +1,5 @@
 provider "azurerm" {
   features {}
-  # subscription_id = ""
-  # tenant_id = ""
 }
 
 # Creating a resource group
