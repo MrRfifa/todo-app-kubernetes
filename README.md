@@ -1,5 +1,5 @@
 
-# Todo App running in kubernetes cluster
+# Deploying Todo App in Azure vm with Terraform
 
 This repository contains a todo app designed to run within a Kubernetes cluster. It includes Dockerfiles for easy containerization.
 # Project Files Overview
